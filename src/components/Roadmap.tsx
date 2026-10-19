@@ -10,10 +10,10 @@ export default function Roadmap() {
         <SectionHeading
           center
           eyebrow="Yol haritası"
-          title="Nereye gidiyoruz?"
+          title="Dönem planı"
           description={
             <>
-              Öncelikler etki, aciliyet, bakım maliyeti, güvenlik ve ekip kapasitesine göre belirlenir. Güncel görevler{" "}
+              Öncelikler; etki, aciliyet, bakım maliyeti, güvenlik ve ekip kapasitesi dikkate alınarak belirlenir. Güncel görevler{" "}
               <a href={links.roadmap} target="_blank" rel="noreferrer" className="font-semibold text-ieee hover:underline">
                 GitHub'da
               </a>{" "}
@@ -28,10 +28,10 @@ export default function Roadmap() {
             const pct = Math.round((done / col.items.length) * 100);
             return (
               <Reveal key={col.phase} delay={i * 0.1}>
-                <div className="h-full rounded-2xl border border-slate-200 bg-slate-50/60 p-7">
+                <div className="h-full rounded-lg border border-slate-200 bg-slate-50/60 p-7">
                   <div className="flex items-center justify-between">
                     <span
-                      className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                      className={`rounded px-3 py-1 text-xs font-semibold ${
                         i === 0 ? "bg-ieee text-white" : "bg-slate-200 text-slate-700"
                       }`}
                     >
@@ -55,7 +55,7 @@ export default function Roadmap() {
                     {col.items.map((it) => (
                       <li key={it.text} className="flex items-start gap-3 text-sm">
                         <span
-                          className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border ${
+                          className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded border ${
                             it.done ? "border-ieee bg-ieee text-white" : "border-slate-300 bg-white"
                           }`}
                         >

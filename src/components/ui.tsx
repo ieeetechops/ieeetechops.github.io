@@ -80,7 +80,7 @@ export function SpotlightCard({
     <div
       ref={ref}
       onMouseMove={onMove}
-      className={`spotlight group relative h-full overflow-hidden rounded-2xl border transition duration-300 hover:-translate-y-1 ${
+      className={`spotlight group relative h-full overflow-hidden rounded-lg border transition duration-300 hover:-translate-y-1 ${
         dark
           ? "border-white/10 bg-white/[0.03] hover:border-ieee-light/30"
           : "border-slate-200 bg-white hover:border-ieee/30 hover:shadow-xl hover:shadow-ieee/5"
@@ -116,14 +116,8 @@ export function Counter({ to, prefix = "", suffix = "" }: { to: number; prefix?:
   );
 }
 
-export function Logo(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" {...props}>
-      <rect width="64" height="64" rx="14" fill="#00629b" />
-      <path d="M14 18h36v9H37v25H27V27H14z" fill="#fff" />
-      <circle cx="45" cy="45" r="7" fill="#00b5e2" />
-    </svg>
-  );
+export function Logo({ className = "" }: { className?: string }) {
+  return <img src="/techops-mark.png" alt="" width={256} height={256} className={`object-contain ${className}`} />;
 }
 
 export function GithubIcon(props: SVGProps<SVGSVGElement>) {

@@ -55,8 +55,8 @@ export default function Projects() {
       <Container>
         <SectionHeading
           eyebrow="Projeler"
-          title="Yürüttüğümüz çalışmalar"
-          description="TechOps tarafından yürütülen veya planlanan projeler. Her yeni proje açık bir problem, sahip, başarı ölçütü ve çıkış kriteriyle başlar."
+          title="Yürütülen projeler"
+          description="TechOps tarafından yürütülen ve planlanan projeler. Her proje; tanımlı bir problem, sorumlu kişi, başarı ölçütü ve tamamlanma kriteriyle başlatılır."
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -64,7 +64,7 @@ export default function Projects() {
             const card = (
               <SpotlightCard className="flex flex-col p-7">
                 <div className="flex items-start justify-between gap-4">
-                  <span className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ${statusStyle[p.status]}`}>
+                  <span className={`rounded px-2.5 py-1 text-xs font-medium ring-1 ring-inset ${statusStyle[p.status]}`}>
                     {p.status}
                   </span>
                   {p.href && (
@@ -91,8 +91,8 @@ export default function Projects() {
 
         <Reveal className="mt-20 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h3 className="font-display text-2xl font-semibold text-slate-900">GitHub'daki açık depolarımız</h3>
-            <p className="mt-1 text-slate-500">Canlı olarak GitHub'dan alınır.</p>
+            <h3 className="font-display text-2xl font-semibold text-slate-900">Açık kaynak depolar</h3>
+            <p className="mt-1 text-slate-500">Liste GitHub üzerinden otomatik olarak güncellenir.</p>
           </div>
           <a
             href={links.github}
@@ -106,13 +106,13 @@ export default function Projects() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {repos.status === "loading" &&
-            Array.from({ length: 3 }, (_, i) => <div key={i} className="h-36 animate-pulse rounded-2xl bg-slate-100" />)}
+            Array.from({ length: 3 }, (_, i) => <div key={i} className="h-36 animate-pulse rounded-lg bg-slate-100" />)}
 
           {repos.status === "error" && (
             <p className="text-slate-500 sm:col-span-2 lg:col-span-3">
               Depolar şu an yüklenemedi.{" "}
               <a href={links.github} className="font-semibold text-ieee hover:underline" target="_blank" rel="noreferrer">
-                GitHub profilimize göz atın →
+                GitHub sayfasını ziyaret edin →
               </a>
             </p>
           )}
@@ -124,7 +124,7 @@ export default function Projects() {
                   href={r.html_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 p-6 transition hover:border-ieee/30 hover:bg-slate-50"
+                  className="group flex h-full flex-col rounded-lg border border-slate-200 p-6 transition hover:border-ieee/30 hover:bg-slate-50"
                 >
                   <div className="flex items-center gap-2 font-mono text-sm font-semibold text-slate-900">
                     <GithubIcon className="h-4 w-4 text-slate-400" />

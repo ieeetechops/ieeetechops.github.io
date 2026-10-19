@@ -5,9 +5,7 @@ import {
   Activity,
   BookMarked,
   BookOpen,
-  BrainCircuit,
   CalendarCheck,
-  FileSearch,
   FolderKanban,
   Gauge,
   Globe,
@@ -19,7 +17,6 @@ import {
   Target,
   Users,
   Workflow,
-  Wrench,
 } from "lucide-react";
 
 const gh = "https://github.com/ieeetechops";
@@ -29,6 +26,7 @@ export const links = {
   docs: "https://ieeetechops.github.io/ieeetechops/",
   techopsRepo: `${gh}/ieeetechops`,
   projectLab: `${gh}/project-lab`,
+  catalog: `${gh}/project-lab/blob/main/catalog/README.md`,
   propose: `${gh}/project-lab/issues/new?template=project-proposal.yml`,
   rubric: `${gh}/project-lab/blob/main/docs/evaluation-rubric.md`,
   lifecycle: `${gh}/project-lab/blob/main/docs/lifecycle.md`,
@@ -37,100 +35,95 @@ export const links = {
   roadmap: `${gh}/ieeetechops/blob/main/ROADMAP.md`,
   security: `${gh}/ieeetechops/blob/main/SECURITY.md`,
   site: `${gh}/ieeetechops.github.io`,
+  career: "https://ieee-ikcu-kariyer.web.app/",
+  kvkk: "/kvkk/",
+  privacy: "/gizlilik/",
+  cookies: "/cerez-politikasi/",
 };
 
+export const isExternal = (href: string) => href.startsWith("http");
+
 export const nav = [
-  { label: "Hakkımızda", href: "#hakkimizda" },
-  { label: "Çalışma Alanları", href: "#alanlar" },
-  { label: "Project Lab", href: "#project-lab" },
-  { label: "Projeler", href: "#projeler" },
-  { label: "Yol Haritası", href: "#yol-haritasi" },
+  { label: "Hakkımızda", href: "/#hakkimizda" },
+  { label: "Faaliyet Alanları", href: "/#alanlar" },
+  { label: "Project Lab", href: "/#project-lab" },
+  { label: "Projeler", href: "/#projeler" },
+  { label: "Yol Haritası", href: "/#yol-haritasi" },
+  { label: "Kariyer", href: links.career },
 ];
 
 type Step = { icon: LucideIcon; label: string; text: string };
 
 export const flow: Step[] = [
-  { icon: Lightbulb, label: "İhtiyaç", text: "Gerçek bir problem tanımlanır" },
-  { icon: FolderKanban, label: "Proje", text: "Sahip, kapsam ve kabul kriterleri" },
-  { icon: Server, label: "Servis", text: "Çalışan, izlenebilir sistem" },
-  { icon: Activity, label: "Operasyon", text: "Bakım, erişim ve süreklilik" },
-  { icon: BookOpen, label: "Dokümantasyon", text: "Kararlar ve runbook'lar yazılır" },
-  { icon: Repeat, label: "Sürdürülebilir devir", text: "Sonraki ekip kaldığı yerden devam eder" },
+  { icon: Lightbulb, label: "İhtiyaç analizi", text: "İhtiyaç ve kapsam belirlenir" },
+  { icon: FolderKanban, label: "Proje", text: "Sorumlu, kapsam ve kabul kriterleri tanımlanır" },
+  { icon: Server, label: "Servis", text: "Sistem devreye alınır ve izlenir" },
+  { icon: Activity, label: "Operasyon", text: "Bakım, erişim ve süreklilik sağlanır" },
+  { icon: BookOpen, label: "Dokümantasyon", text: "Kararlar ve işletim belgeleri kayıt altına alınır" },
+  { icon: Repeat, label: "Devir", text: "Sistem sonraki yönetim dönemine devredilir" },
 ];
 
 export const stats = [
-  { value: 6, label: "çalışma alanı" },
-  { value: 3, label: "Project Lab proje türü" },
+  { value: 6, label: "faaliyet alanı" },
+  { value: 32, label: "katalogdaki proje" },
   { value: 14, label: "haftalık proje dönemi" },
-  { value: 100, prefix: "%", label: "herkese açık depo" },
+  { value: 100, prefix: "%", label: "açık kaynak depo" },
 ];
 
 export const principles = [
-  "Kritik sistemler kişilere değil organizasyona aittir.",
-  "Yetki, görev için gereken en düşük seviyede verilir.",
-  "Kalıcı teknik kararlar yazılı ve izlenebilir olmalıdır.",
-  "Üretim değişiklikleri gözden geçirilebilir ve geri alınabilir olmalıdır.",
-  "Güvenlik ve kişisel veri, hız uğruna ikinci plana atılmaz.",
+  "Kritik sistemler kişilere değil, kola aittir.",
+  "Erişim yetkileri görev için gereken en düşük düzeyde verilir.",
+  "Kalıcı teknik kararlar yazılı ve izlenebilir şekilde kaydedilir.",
+  "Canlı sistemlerdeki değişiklikler gözden geçirilir ve geri alınabilir olur.",
+  "Bilgi güvenliği ve kişisel verilerin korunması her aşamada gözetilir.",
 ];
 
 type Area = { icon: LucideIcon; title: string; text: string };
 
 export const areas: Area[] = [
-  { icon: Users, title: "Üyelik sistemleri", text: "Kimlik doğrulama, roller ve üye deneyimi." },
-  { icon: CalendarCheck, title: "Etkinlik operasyonları", text: "Başvuru, katılımcı, check-in ve sertifika akışları." },
-  { icon: Workflow, title: "Otomasyon", text: "Tekrarlayan işlerin ve veri aktarımlarının otomasyonu." },
-  { icon: Globe, title: "Web servisleri", text: "Web sitesi, yönetim panelleri ve API'ler." },
-  { icon: ShieldCheck, title: "Teknik altyapı", text: "Hesaplar, erişimler, yedekleme ve servis sürekliliği." },
-  { icon: BookMarked, title: "Teknik hafıza", text: "Mimari kararlar, rehberler, runbook'lar ve devir belgeleri." },
-];
-
-type Track = { icon: LucideIcon; title: string; type: string; text: string };
-
-export const tracks: Track[] = [
-  {
-    icon: FileSearch,
-    title: "Digital Archive ve belge zekâsı",
-    type: "Ürün / sistem",
-    text: "Dağınık kol arşivini aranabilir ve ilişkilendirilebilir hale getirmek.",
-  },
-  {
-    icon: BrainCircuit,
-    title: "Machine Learning araştırması",
-    type: "Araştırma",
-    text: "Mevcut yöntemlerin yetersiz kaldığı ölçülebilir bir alt problemde anlamlı iyileşme.",
-  },
-  {
-    icon: Wrench,
-    title: "Açık kaynak mühendislik aracı",
-    type: "Açık kaynak",
-    text: "Mühendislik öğrencilerinin elle tekrarladığı işleri sürdürülebilir bir araçla çözmek.",
-  },
+  { icon: Users, title: "Üyelik sistemleri", text: "Kimlik doğrulama, rol yönetimi ve üye kayıt süreçleri." },
+  { icon: CalendarCheck, title: "Etkinlik operasyonları", text: "Başvuru, katılımcı yönetimi, giriş kontrolü ve sertifika süreçleri." },
+  { icon: Workflow, title: "Otomasyon", text: "Tekrarlanan işlemlerin ve veri aktarımlarının otomasyonu." },
+  { icon: Globe, title: "Web servisleri", text: "Web siteleri, yönetim panelleri ve uygulama arayüzleri (API)." },
+  { icon: ShieldCheck, title: "Teknik altyapı", text: "Hesap ve erişim yönetimi, yedekleme ve servis sürekliliği." },
+  { icon: BookMarked, title: "Kurumsal teknik bilgi", text: "Mimari kararlar, kılavuzlar, işletim belgeleri ve devir dokümanları." },
 ];
 
 type Criterion = { icon: LucideIcon; title: string; text: string };
 
 export const criteria: Criterion[] = [
-  { icon: Target, title: "Gerçek problem", text: "Kimin, hangi durumda, neden zorlandığı kanıtla gösterilir." },
-  { icon: Gauge, title: "Ölçülebilir sonuç", text: "Baseline, hedef metrik ve ölçüm yöntemi baştan yazılır." },
-  { icon: Sparkles, title: "Özgün yaklaşım", text: "Mevcut çözümlerden nasıl ayrıldığı açıkça belgelenir." },
+  { icon: Target, title: "Tanımlı problem", text: "Projenin ele aldığı problem ve etkilediği kullanıcılar açıkça belirtilir." },
+  { icon: Gauge, title: "Ölçülebilir hedef", text: "Başlangıç ölçümü, hedef metrik ve ölçüm yöntemi proje başında yazılır." },
+  { icon: Sparkles, title: "Mevcut çalışmalarla karşılaştırma", text: "Benzer çözümler incelenir ve projenin bunlardan farkı belgelenir." },
+];
+
+export const catalogAreas = [
+  { code: "A", title: "Web teknolojileri ve tarayıcı mühendisliği", count: 4 },
+  { code: "B", title: "Backend, API ve dağıtık sistemler", count: 4 },
+  { code: "C", title: "Yazılım mühendisliği ve geliştirici araçları", count: 4 },
+  { code: "D", title: "Siber güvenlik ve mahremiyet mühendisliği", count: 4 },
+  { code: "E", title: "Veri mühendisliği ve uygulamalı yapay zekâ", count: 4 },
+  { code: "F", title: "İnsan-bilgisayar etkileşimi ve erişilebilirlik", count: 4 },
+  { code: "G", title: "İşletim sistemleri, ağlar ve altyapı", count: 4 },
+  { code: "H", title: "Bilgisayar grafikleri ve etkileşimli sistemler", count: 4 },
 ];
 
 export const stages = [
-  { gate: "K0", title: "Öneri", week: "Hafta 0", text: "Problem kanıtı ve başarı ölçütleri" },
-  { gate: "K1", title: "Keşif", week: "Hafta 1–3", text: "Baseline ölçümü ve yaklaşım seçimi" },
+  { gate: "K0", title: "Öneri", week: "Hafta 0", text: "Proje önerisi ve başarı ölçütleri" },
+  { gate: "K1", title: "Keşif", week: "Hafta 1–3", text: "Başlangıç ölçümü ve yöntem seçimi" },
   { gate: "K2", title: "Geliştirme", week: "Hafta 4–8", text: "Çalışan sürüm ve ara değerlendirme" },
-  { gate: "K3", title: "Tamamlama", week: "Hafta 9–13", text: "Kararlı sürüm, belgeler, hata analizi" },
-  { gate: "✓", title: "Sonuç", week: "Hafta 14", text: "Final sunumu: bakım, yayın veya arşiv" },
+  { gate: "K3", title: "Tamamlama", week: "Hafta 9–13", text: "Kararlı sürüm, belgeler ve hata analizi" },
+  { gate: "✓", title: "Sonuç", week: "Hafta 14", text: "Final sunumu; bakım, yayın veya arşiv kararı" },
 ];
 
 export type Status = "Aktif" | "Planlama" | "Hazırlanıyor";
 
 export const projects: { title: string; text: string; status: Status; href?: string }[] = [
-  { title: "IEEE Project Lab", text: "Öğrencilerin özgün mühendislik problemleri üzerinde çalıştığı proje geliştirme programı.", status: "Aktif", href: links.projectLab },
-  { title: "TechOps Dokümantasyonu", text: "Teknik hafıza ve çalışma standartları.", status: "Aktif", href: links.techopsRepo },
-  { title: "Başvuru Platformu", text: "Başvuru ve değerlendirme süreçlerini yönetmek.", status: "Hazırlanıyor" },
-  { title: "Üyelik Altyapısı", text: "Üyelik deneyimi ve veri bütünlüğü.", status: "Planlama" },
-  { title: "HeptaCert Entegrasyonu", text: "Etkinlik verilerini kontrollü aktarmak.", status: "Planlama" },
+  { title: "IEEE Project Lab", text: "Öğrenci proje geliştirme programının yönetişim deposu ve proje kataloğu.", status: "Aktif", href: links.projectLab },
+  { title: "TechOps Dokümantasyonu", text: "Birimin çalışma standartları ve teknik belgeleri.", status: "Aktif", href: links.techopsRepo },
+  { title: "Başvuru Platformu", text: "Başvuru ve değerlendirme süreçlerinin yönetimi.", status: "Hazırlanıyor" },
+  { title: "Üyelik Altyapısı", text: "Üye kayıt süreçleri ve veri bütünlüğü.", status: "Planlama" },
+  { title: "HeptaCert Entegrasyonu", text: "Etkinlik verilerinin kontrollü aktarımı.", status: "Planlama" },
   { title: "Drive Yapılandırması", text: "Dosya, klasör ve paylaşım standardı.", status: "Planlama" },
 ];
 
@@ -139,26 +132,26 @@ export const ecosystem = [
   { area: "Kimlik ve üye verisi", system: "Firebase" },
   { area: "Etkinlik yönetimi", system: "HeptaCert" },
   { area: "Operasyonel çalışma", system: "Google Workspace" },
-  { area: "Kaynak kodu ve teknik hafıza", system: "GitHub" },
+  { area: "Kaynak kodu ve dokümantasyon", system: "GitHub" },
   { area: "Entegrasyonlar", system: "REST API ve webhook" },
 ];
 
 export const roadmap = [
   {
-    phase: "Şimdi",
+    phase: "Mevcut dönem",
     title: "Temel yapı",
     items: [
       { text: "TechOps dokümantasyon deposu", done: true },
       { text: "Katkı, güvenlik ve yönetişim kuralları", done: true },
       { text: "Issue ve pull request şablonları", done: true },
       { text: "GitHub Pages dokümantasyon altyapısı", done: true },
-      { text: "Proje ve servis sahiplerinin doğrulanması", done: false },
+      { text: "Proje ve servis sorumlularının belirlenmesi", done: false },
       { text: "Kurumsal hesap ve erişim envanteri", done: false },
-      { text: "GitHub organizasyonu takım/yetki düzeni", done: false },
+      { text: "GitHub organizasyonu ekip ve yetki düzeni", done: false },
     ],
   },
   {
-    phase: "Sırada",
+    phase: "Sonraki adım",
     title: "Standartlaştırma",
     items: [
       { text: "Yeni proje başlangıç şablonu", done: false },
@@ -170,14 +163,14 @@ export const roadmap = [
     ],
   },
   {
-    phase: "Sonra",
+    phase: "Orta vade",
     title: "Ürünler ve entegrasyonlar",
     items: [
       { text: "Başvuru ve operasyon platformu", done: false },
       { text: "Üyelik altyapısı iyileştirmeleri", done: false },
       { text: "HeptaCert veri entegrasyonu", done: false },
       { text: "Etkinlik raporlama otomasyonu", done: false },
-      { text: "Servis durumu ve gözlemlenebilirlik", done: false },
+      { text: "Servis durumu izleme", done: false },
       { text: "Yönetim dönemi devir paneli", done: false },
     ],
   },

@@ -10,14 +10,14 @@ export default function About() {
         <div>
           <SectionHeading
             eyebrow="Hakkımızda"
-            title="TechOps nedir?"
-            description="TechOps; IEEE İKÇÜ'nün dijital servislerini, entegrasyonlarını ve teknik bilgisini kişilere bağımlı olmadan sürdürülebilir hale getirir."
+            title="Birim hakkında"
+            description="TechOps, IEEE İKÇÜ'nün dijital servislerini, sistem entegrasyonlarını ve teknik dokümantasyonunu yönetir."
           />
           <Reveal delay={0.1}>
             <p className="mt-6 leading-relaxed">
-              Yeni sistemler geliştirmenin yanında mevcut sistemleri standartlaştırır, belgeler ve sonraki ekibe güvenli
-              şekilde devrederiz. Amacımız, her yeni yönetimin sistemi sıfırdan kurmak yerine mevcut yapının üzerine
-              geliştirme yapabilmesi.
+              Birim, yeni sistemlerin geliştirilmesinin yanı sıra mevcut sistemlerin standartlaştırılması, belgelenmesi
+              ve sonraki yönetim dönemine eksiksiz devredilmesinden sorumludur. Bu sayede her yönetim dönemi, mevcut
+              altyapıyı yeniden kurmak yerine onun üzerine geliştirme yapabilir.
             </p>
             <a
               href={links.governance}
@@ -25,7 +25,7 @@ export default function About() {
               rel="noreferrer"
               className="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-ieee hover:underline"
             >
-              Yönetişim modelimizi okuyun →
+              Yönetişim modeli →
             </a>
           </Reveal>
         </div>
@@ -42,9 +42,9 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.08, ease }}
-                className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50/60 p-5 transition hover:border-ieee/30 hover:bg-white"
+                className="flex items-start gap-4 rounded-lg border border-slate-200 bg-slate-50/60 p-5 transition hover:border-ieee/30 hover:bg-white"
               >
-                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-ieee text-white">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-ieee text-white">
                   <Check className="h-4 w-4" />
                 </span>
                 <span className="text-slate-700">{p}</span>

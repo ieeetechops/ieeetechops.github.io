@@ -9,6 +9,7 @@
   --color-navy-950: #030d18;
   --color-navy-900: #061a2e;
   --color-navy-800: #0a2540;
+  --color-techops: #ff751f;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -27,21 +28,6 @@ section[id] {
 
 ::selection {
   background: rgb(0 181 226 / 0.3);
-}
-
-.text-gradient {
-  background: linear-gradient(90deg, #00b5e2, #4fd1ff 40%, #00629b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.bg-grid {
-  background-image:
-    linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
 }
 
 /* Fare imlecini takip eden ışık efekti (SpotlightCard) */
