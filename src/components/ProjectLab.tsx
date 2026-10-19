@@ -53,7 +53,7 @@ export default function ProjectLab() {
           <div>
             <h3 className="font-display text-2xl font-semibold text-white">Proje kataloğu</h3>
             <p className="mt-2 max-w-3xl text-slate-400">
-              Katalog, 8 mühendislik alanında 32 proje içerir. Her proje sayfasında problem tanımı, araştırma sorusu,
+              Katalog, 15 mühendislik alanında 60 proje içerir. Her proje sayfasında problem tanımı, araştırma sorusu,
               deney tasarımı, başarı ölçütleri, teknik terimler sözlüğü ve 14 haftalık çalışma planı yer alır.
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function ProjectLab() {
             Kataloğu incele →
           </a>
         </Reveal>
-        <ul className="mt-8 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-3 lg:grid-cols-5">
           {catalogAreas.map((a) => (
             <li key={a.code} className="flex gap-4 bg-navy-950 p-5">
               <span className="font-mono text-sm font-semibold text-ieee-light">{a.code}</span>

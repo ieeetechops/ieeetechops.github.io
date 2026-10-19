@@ -52,7 +52,11 @@ export default function Join() {
               <a href={links.security} target="_blank" rel="noreferrer" className="text-slate-200 underline-offset-4 hover:underline">
                 güvenlik politikasındaki
               </a>{" "}
-              yöntemi kullanınız.
+              yöntemi kullanınız veya{" "}
+              <a href={links.contact} className="text-slate-200 underline-offset-4 hover:underline">
+                {links.email}
+              </a>{" "}
+              adresine e-posta gönderiniz.
             </p>
           </div>
         </Reveal>

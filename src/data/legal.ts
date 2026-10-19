@@ -3,9 +3,8 @@
 
 export const legalUpdated = "19 Ekim 2026";
 
-// Başvuruların iletileceği kanal. Kolun resmî e-posta adresi belirlendiğinde buraya yazılmalıdır.
-export const legalContact =
-  "IEEE İzmir Kâtip Çelebi Üniversitesi Öğrenci Kolu'nun resmî iletişim kanalları";
+// KVKK başvuruları ve diğer talepler için resmî iletişim adresi.
+export const legalContact = "sametutku16@gmail.com";
 
 export type LegalSection = { heading: string; paragraphs?: string[]; list?: string[] };
 export type LegalDoc = { slug: "kvkk" | "gizlilik" | "cerez-politikasi"; title: string; intro: string; sections: LegalSection[] };
@@ -80,7 +79,7 @@ export const legalDocs: Record<LegalDoc["slug"], LegalDoc> = {
       {
         heading: "8. Başvuru yöntemi",
         paragraphs: [
-          `Haklarınıza ilişkin taleplerinizi, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'e uygun olarak, ${legalContact} üzerinden yazılı olarak iletebilirsiniz. Başvurular, talebin niteliğine göre en geç otuz gün içinde ücretsiz olarak sonuçlandırılır.`,
+          `Haklarınıza ilişkin taleplerinizi, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'e uygun olarak, ${legalContact} adresine e-posta yoluyla yazılı olarak iletebilirsiniz. Başvurunuzda adınızı, soyadınızı, iletişim bilgilerinizi ve talebinizin konusunu belirtmeniz gerekmektedir. Başvurular, talebin niteliğine göre en geç otuz gün içinde ücretsiz olarak sonuçlandırılır.`,
         ],
       },
     ],
@@ -130,6 +129,10 @@ export const legalDocs: Record<LegalDoc["slug"], LegalDoc> = {
           "Sitede kişisel veri işlenmesini gerektiren yeni bir özellik eklenmesi hâlinde bu politika güncellenir. Güncel sürüm her zaman bu sayfada yayımlanır.",
         ],
       },
+      {
+        heading: "İletişim",
+        paragraphs: [`Bu politikaya ilişkin sorularınızı ${legalContact} adresine iletebilirsiniz.`],
+      },
     ],
   },
   "cerez-politikasi": {
@@ -167,6 +170,10 @@ export const legalDocs: Record<LegalDoc["slug"], LegalDoc> = {
         paragraphs: [
           "Sitede çerez kullanımını gerektiren bir özellik eklenirse bu politika güncellenir ve mevzuatın gerektirdiği durumlarda ziyaretçilerden açık rıza alınır.",
         ],
+      },
+      {
+        heading: "İletişim",
+        paragraphs: [`Bu politikaya ilişkin sorularınızı ${legalContact} adresine iletebilirsiniz.`],
       },
     ],
   },

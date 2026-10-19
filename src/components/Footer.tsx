@@ -18,6 +18,7 @@ const columns = [
       { label: "Dokümantasyon", href: links.docs },
       { label: "Yol haritası", href: links.roadmap },
       { label: "Kariyer", href: links.career },
+      { label: "İletişim", href: links.contact },
     ],
   },
   {
@@ -50,6 +51,9 @@ export default function Footer() {
           <p className="mt-5 max-w-xs text-sm leading-relaxed">
             IEEE İzmir Kâtip Çelebi Üniversitesi Öğrenci Kolu'nun dijital altyapısını ve teknik süreçlerini yürüten birim.
           </p>
+          <a href={links.contact} className="mt-4 block w-fit text-sm text-slate-300 hover:text-white">
+            {links.email}
+          </a>
           <a
             href={links.github}
             target="_blank"

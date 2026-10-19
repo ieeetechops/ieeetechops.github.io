@@ -36,6 +36,8 @@ export const links = {
   security: `${gh}/ieeetechops/blob/main/SECURITY.md`,
   site: `${gh}/ieeetechops.github.io`,
   career: "https://ieee-ikcu-kariyer.web.app/",
+  email: "sametutku16@gmail.com",
+  contact: "mailto:sametutku16@gmail.com",
   kvkk: "/kvkk/",
   privacy: "/gizlilik/",
   cookies: "/cerez-politikasi/",
@@ -65,7 +67,7 @@ export const flow: Step[] = [
 
 export const stats = [
   { value: 6, label: "faaliyet alanı" },
-  { value: 32, label: "katalogdaki proje" },
+  { value: 60, label: "katalogdaki proje" },
   { value: 14, label: "haftalık proje dönemi" },
   { value: 100, prefix: "%", label: "açık kaynak depo" },
 ];
@@ -106,6 +108,13 @@ export const catalogAreas = [
   { code: "F", title: "İnsan-bilgisayar etkileşimi ve erişilebilirlik", count: 4 },
   { code: "G", title: "İşletim sistemleri, ağlar ve altyapı", count: 4 },
   { code: "H", title: "Bilgisayar grafikleri ve etkileşimli sistemler", count: 4 },
+  { code: "I", title: "Robotik ve otonom sistemler", count: 4 },
+  { code: "J", title: "Gömülü sistemler ve nesnelerin interneti", count: 4 },
+  { code: "K", title: "Bilgisayarlı görü", count: 4 },
+  { code: "L", title: "Oyun teknolojileri", count: 4 },
+  { code: "M", title: "Programlama dilleri ve derleyici araçları", count: 4 },
+  { code: "N", title: "Bilimsel hesaplama ve simülasyon", count: 4 },
+  { code: "O", title: "Ses, müzik ve dijital sanat teknolojileri", count: 4 },
 ];
 
 export const stages = [
