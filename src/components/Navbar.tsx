@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { isExternal, links, nav } from "../data/site";
 import { GithubIcon, Logo } from "./ui";
@@ -67,15 +66,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
         </button>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden lg:hidden"
-          >
+      {open && (
+          <div className="lg:hidden">
             <ul className="space-y-1 px-4 pt-2 pb-6">
               {[...nav, { label: "GitHub", href: links.github }].map((item) => (
                 <li key={item.href}>
@@ -91,9 +83,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </header>
   );
 }

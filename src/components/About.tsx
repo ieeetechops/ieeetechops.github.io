@@ -1,7 +1,6 @@
-import { motion } from "motion/react";
 import { Check } from "lucide-react";
 import { links, principles } from "../data/site";
-import { Container, Reveal, SectionHeading, ease } from "./ui";
+import { Container, Reveal, SectionHeading } from "./ui";
 
 export default function About() {
   return (
@@ -36,19 +35,17 @@ export default function About() {
           </Reveal>
           <ul className="mt-6 space-y-3">
             {principles.map((p, i) => (
-              <motion.li
+              <Reveal
+                as="li"
                 key={p}
-                initial={{ opacity: 0, x: 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                delay={i * 0.08}
                 className="flex items-start gap-4 rounded-lg border border-slate-200 bg-slate-50/60 p-5 transition hover:border-ieee/30 hover:bg-white"
               >
                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-ieee text-white">
                   <Check className="h-4 w-4" />
                 </span>
                 <span className="text-slate-700">{p}</span>
-              </motion.li>
+              </Reveal>
             ))}
           </ul>
         </div>

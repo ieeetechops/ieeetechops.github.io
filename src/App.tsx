@@ -1,4 +1,3 @@
-import { MotionConfig } from "motion/react";
 import ScrollProgress from "./components/ScrollProgress";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -13,7 +12,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       <ScrollProgress />
       <Navbar />
       <main>
@@ -27,6 +26,6 @@ export default function App() {
         <Join />
       </main>
       <Footer />
-    </MotionConfig>
+    </>
   );
 }

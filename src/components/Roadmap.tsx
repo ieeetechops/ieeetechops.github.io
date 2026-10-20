@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 import { Check } from "lucide-react";
 import { links, roadmap } from "../data/site";
-import { Container, Reveal, SectionHeading, ease } from "./ui";
+import { Container, Reveal, SectionHeading } from "./ui";
 
 export default function Roadmap() {
   return (
@@ -43,12 +43,9 @@ export default function Roadmap() {
                   </div>
                   <h3 className="mt-4 font-display text-xl font-semibold text-slate-900">{col.title}</h3>
                   <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-200">
-                    <motion.div
-                      className="h-full rounded-full bg-gradient-to-r from-ieee to-ieee-light"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${pct}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: 0.3, ease }}
+                    <div
+                      className="reveal-bar h-full rounded-full bg-gradient-to-r from-ieee to-ieee-light"
+                      style={{ "--bar": `${pct}%` } as CSSProperties}
                     />
                   </div>
                   <ul className="mt-6 space-y-3">

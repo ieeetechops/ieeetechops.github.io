@@ -15,7 +15,7 @@ export default function Join() {
       <Container>
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-xl bg-navy-950 px-6 py-16 sm:px-12 sm:py-20">
-            <div aria-hidden="true" className="absolute -top-32 -right-32 -z-10 h-96 w-96 rounded-full bg-ieee/30 blur-[120px]" />
+            <div aria-hidden="true" className="absolute -top-48 -right-48 -z-10 h-[36rem] w-[36rem] bg-[radial-gradient(closest-side,rgb(0_98_155/0.35),transparent)]" />
 
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">Katılım ve katkı</h2>

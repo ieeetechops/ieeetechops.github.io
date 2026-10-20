@@ -1,33 +1,65 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type SVGProps } from "react";
-import { animate, motion, useInView, useReducedMotion } from "motion/react";
-
-export const ease = [0.22, 1, 0.36, 1] as const;
+import { useEffect, useRef, type CSSProperties, type MouseEvent, type ReactNode, type RefObject, type SVGProps } from "react";
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
+// Görünür alana giren [data-reveal] öğelerine "is-visible" sınıfını ekleyen tek, paylaşılan gözlemci.
+// Animasyonun kendisi index.css'tedir; JavaScript çalışmazsa içerik gizlenmez.
+let observer: IntersectionObserver | null = null;
+
+function observe(el: Element) {
+  if (typeof IntersectionObserver === "undefined") {
+    el.classList.add("is-visible");
+    return;
+  }
+  observer ??= new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer?.unobserve(entry.target);
+        }
+      }
+    },
+    { rootMargin: "0px 0px -80px 0px" },
+  );
+  observer.observe(el);
+}
+
+export function useReveal<T extends Element>() {
+  const ref = useRef<T>(null);
+  useEffect(() => {
+    if (ref.current) observe(ref.current);
+  }, []);
+  return ref;
+}
+
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
   className,
+  as = "div",
 }: {
   children: ReactNode;
   delay?: number;
-  y?: number;
   className?: string;
+  as?: "div" | "li";
 }) {
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease }}
-    >
+  const ref = useReveal<HTMLElement>();
+  const props = {
+    className,
+    "data-reveal": "",
+    style: delay ? ({ "--reveal-delay": `${delay}s` } as CSSProperties) : undefined,
+  };
+  return as === "li" ? (
+    <li ref={ref as RefObject<HTMLLIElement>} {...props}>
       {children}
-    </motion.div>
+    </li>
+  ) : (
+    <div ref={ref as RefObject<HTMLDivElement>} {...props}>
+      {children}
+    </div>
   );
 }
 
@@ -91,33 +123,8 @@ export function SpotlightCard({
   );
 }
 
-export function Counter({ to, prefix = "", suffix = "" }: { to: number; prefix?: string; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      setValue(to);
-      return;
-    }
-    const controls = animate(0, to, { duration: 1.6, ease: "easeOut", onUpdate: (v) => setValue(Math.round(v)) });
-    return () => controls.stop();
-  }, [inView, reduce, to]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {prefix}
-      {value}
-      {suffix}
-    </span>
-  );
-}
-
 export function Logo({ className = "" }: { className?: string }) {
-  return <img src="/techops-mark.png" alt="" width={256} height={256} className={`object-contain ${className}`} />;
+  return <img src="/techops-mark.png" alt="" width={96} height={96} decoding="async" className={`object-contain ${className}`} />;
 }
 
 export function GithubIcon(props: SVGProps<SVGSVGElement>) {

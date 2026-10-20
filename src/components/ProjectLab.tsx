@@ -1,12 +1,13 @@
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { catalogAreas, criteria, links, stages } from "../data/site";
-import { Container, Reveal, SectionHeading, ease } from "./ui";
+import { Container, Reveal, SectionHeading, useReveal } from "./ui";
 
 export default function ProjectLab() {
+  const lineRef = useReveal<HTMLDivElement>();
+
   return (
     <section id="project-lab" className="relative isolate overflow-hidden bg-navy-950 py-24 sm:py-32">
-      <div aria-hidden="true" className="absolute top-1/3 -left-40 -z-10 h-[32rem] w-[32rem] rounded-full bg-ieee/15 blur-[140px]" />
+      <div aria-hidden="true" className="absolute top-1/3 -left-60 -z-10 h-[48rem] w-[48rem] bg-[radial-gradient(closest-side,rgb(0_98_155/0.18),transparent)]" />
 
       <Container>
         <SectionHeading
@@ -28,12 +29,9 @@ export default function ProjectLab() {
           {criteria.map((c, i) => {
             const Icon = c.icon;
             return (
-              <motion.div
+              <Reveal
                 key={c.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.1, ease }}
+                delay={i * 0.1}
                 className="flex gap-4 rounded-lg border border-white/10 bg-white/[0.03] p-5"
               >
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-ieee text-white">
@@ -43,7 +41,7 @@ export default function ProjectLab() {
                   <p className="font-semibold text-white">{c.title}</p>
                   <p className="mt-1 text-sm text-slate-400">{c.text}</p>
                 </div>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>
@@ -84,23 +82,15 @@ export default function ProjectLab() {
           <p className="mt-2 text-slate-400">Her aşama, Değerlendirme Kurulu'nun onayladığı bir değerlendirme kapısıyla tamamlanır.</p>
         </Reveal>
         <div className="relative mt-12">
-          <div aria-hidden="true" className="absolute top-6 right-[10%] left-[10%] hidden h-px bg-white/10 lg:block">
-            <motion.div
-              className="h-full origin-left bg-ieee-light/60"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.4, ease }}
-            />
+          <div ref={lineRef} data-reveal aria-hidden="true" className="absolute top-6 right-[10%] left-[10%] hidden h-px bg-white/10 lg:block">
+            <div className="reveal-line h-full origin-left bg-ieee-light/60" />
           </div>
           <ol className="grid gap-8 lg:grid-cols-5 lg:gap-4">
             {stages.map((s, i) => (
-              <motion.li
+              <Reveal
+                as="li"
                 key={s.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: 0.2 + i * 0.2, ease }}
+                delay={0.2 + i * 0.2}
                 className="relative flex gap-4 lg:flex-col lg:items-center lg:text-center"
               >
                 <span className="relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-md border border-ieee-light/40 bg-navy-900 font-mono text-sm font-semibold text-ieee-light">
@@ -111,7 +101,7 @@ export default function ProjectLab() {
                   <p className="mt-1 font-display text-lg font-semibold text-white">{s.title}</p>
                   <p className="mt-1 text-sm text-slate-400">{s.text}</p>
                 </div>
-              </motion.li>
+              </Reveal>
             ))}
           </ol>
         </div>

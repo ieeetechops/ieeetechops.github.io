@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, sans-serif;
+  /* Gövde metni cihazın kendi yazı tipini kullanır; yalnızca başlıklar için yazı tipi indirilir. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --color-ieee: #00629b;
   --color-ieee-light: #00b5e2;
@@ -28,6 +29,72 @@ section[id] {
 
 ::selection {
   background: rgb(0 181 226 / 0.3);
+}
+
+/* Hero arka planı: bulanıklaştırılmış öğeler yerine hafif gradyan */
+.hero-glow {
+  background:
+    radial-gradient(40rem 32rem at 30% -10%, rgb(0 98 155 / 0.35), transparent 70%),
+    radial-gradient(30rem 26rem at 105% 45%, rgb(0 181 226 / 0.12), transparent 70%);
+}
+
+/* Kaydırınca belirme. Sınıf, index.html'deki satır içi betikle eklenir;
+   JavaScript çalışmazsa içerik görünür kalır. */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal-line {
+  transform: scaleX(0);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.js .is-visible .reveal-line,
+html:not(.js) .reveal-line {
+  transform: scaleX(1);
+}
+
+.reveal-bar {
+  width: var(--bar);
+}
+
+html.js .reveal-bar {
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+html.js .is-visible .reveal-bar {
+  width: var(--bar);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal],
+  html.js .reveal-line,
+  html.js .reveal-bar {
+    transition: none;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  html.js .reveal-line {
+    transform: scaleX(1);
+  }
+
+  html.js .reveal-bar {
+    width: var(--bar);
+  }
 }
 
 /* Fare imlecini takip eden ışık efekti (SpotlightCard) */

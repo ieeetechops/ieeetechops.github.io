@@ -1,59 +1,38 @@
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { flow, links, stats } from "../data/site";
-import { Container, Counter, GithubIcon, ease } from "./ui";
+import { Container, GithubIcon } from "./ui";
 
 export default function Hero() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => setActive((a) => (a + 1) % flow.length), 2400);
     return () => window.clearInterval(id);
   }, []);
 
   return (
     <section id="top" className="relative isolate overflow-hidden bg-navy-950 pt-32 pb-20 sm:pt-40 lg:pb-28">
-      <div aria-hidden="true" className="absolute -top-56 left-1/4 -z-10 h-[40rem] w-[40rem] rounded-full bg-ieee/25 blur-[140px]" />
-      <div aria-hidden="true" className="absolute top-40 -right-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-ieee-light/10 blur-[120px]" />
+      <div aria-hidden="true" className="hero-glow absolute inset-0 -z-10" />
 
       <Container className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
         <div>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            className="text-sm font-semibold tracking-wider text-ieee-light uppercase"
-          >
+          <p className="text-sm font-semibold tracking-wider text-ieee-light uppercase">
             IEEE İzmir Kâtip Çelebi Üniversitesi Öğrenci Kolu
-          </motion.p>
+          </p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="mt-6 font-display text-4xl leading-[1.15] font-bold tracking-tight text-white sm:text-5xl xl:text-6xl"
-          >
+          <h1 className="mt-6 font-display text-4xl leading-[1.15] font-bold tracking-tight text-white sm:text-5xl xl:text-6xl">
             Teknik Operasyonlar ve Altyapı Dairesi Başkanlığı
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300"
-          >
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
             TechOps, IEEE İKÇÜ'nün dijital altyapısını, yazılım projelerini ve teknik süreçlerini yürüten birimdir. Kolun
             kullandığı sistemlerin güvenli, belgelenmiş ve yönetim dönemleri arasında devredilebilir şekilde işletilmesinden
             sorumludur.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45, ease }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
+          <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#project-lab"
               className="group inline-flex items-center gap-2 rounded-md bg-ieee px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0072b4]"
@@ -70,15 +49,10 @@ export default function Hero() {
               <GithubIcon className="h-4 w-4" />
               GitHub
             </a>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4, ease }}
-          className="rounded-xl border border-white/10 bg-navy-900/90 p-6 backdrop-blur-xl sm:p-8"
-        >
+        <div className="rounded-xl border border-white/10 bg-navy-900/90 p-6 sm:p-8">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold text-white">Çalışma modeli</p>
             <span className="font-mono text-xs text-slate-400">
@@ -88,26 +62,22 @@ export default function Hero() {
 
           <div className="relative mt-6">
             <div aria-hidden="true" className="absolute top-7 bottom-7 left-7 w-px bg-white/10">
-              <motion.div
-                className="w-full bg-ieee-light"
-                animate={{ height: `${(active / (flow.length - 1)) * 100}%` }}
-                transition={{ duration: 0.6, ease }}
+              <div
+                className="w-full bg-ieee-light transition-[height] duration-500 ease-out"
+                style={{ height: `${(active / (flow.length - 1)) * 100}%` }}
               />
             </div>
             <ol className="space-y-1">
               {flow.map((step, i) => {
                 const Icon = step.icon;
                 const reached = i <= active;
-                const current = i === active;
                 return (
-                  <li key={step.label} className="relative flex items-center gap-4 rounded-md p-2">
-                    {current && (
-                      <motion.span
-                        layoutId="flow-active"
-                        className="absolute inset-0 rounded-md bg-white/5"
-                        transition={{ duration: 0.5, ease }}
-                      />
-                    )}
+                  <li
+                    key={step.label}
+                    className={`relative flex items-center gap-4 rounded-md p-2 transition-colors duration-500 ${
+                      i === active ? "bg-white/5" : ""
+                    }`}
+                  >
                     <span
                       className={`relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-md border transition-colors duration-500 ${
                         reached ? "border-ieee-light/50 bg-ieee text-white" : "border-white/10 bg-navy-800 text-slate-500"
@@ -115,7 +85,7 @@ export default function Hero() {
                     >
                       <Icon className="h-5 w-5" />
                     </span>
-                    <div className="relative">
+                    <div>
                       <p className={`text-sm font-semibold transition-colors duration-500 ${reached ? "text-white" : "text-slate-500"}`}>
                         {step.label}
                       </p>
@@ -126,25 +96,21 @@ export default function Hero() {
               })}
             </ol>
           </div>
-        </motion.div>
+        </div>
       </Container>
 
       <Container className="mt-20">
-        <motion.dl
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease }}
-          className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 lg:grid-cols-4"
-        >
+        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="flex flex-col bg-navy-950/80 p-6 backdrop-blur">
+            <div key={s.label} className="flex flex-col bg-navy-950 p-6">
               <dt className="mt-1 text-sm text-slate-400">{s.label}</dt>
-              <dd className="order-first font-display text-3xl font-bold text-white sm:text-4xl">
-                <Counter to={s.value} prefix={s.prefix} />
+              <dd className="order-first font-display text-3xl font-bold text-white tabular-nums sm:text-4xl">
+                {s.prefix}
+                {s.value}
               </dd>
             </div>
           ))}
-        </motion.dl>
+        </dl>
       </Container>
     </section>
   );
