@@ -4,7 +4,7 @@
 export const legalUpdated = "19 Ekim 2026";
 
 // KVKK başvuruları ve diğer talepler için resmî iletişim adresi.
-export const legalContact = "sametutku16@gmail.com";
+export const legalContact = "techopsieee@gmail.com";
 
 export type LegalSection = { heading: string; paragraphs?: string[]; list?: string[] };
 export type LegalDoc = { slug: "kvkk" | "gizlilik" | "cerez-politikasi"; title: string; intro: string; sections: LegalSection[] };
